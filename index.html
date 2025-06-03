@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Text Synchronization</title>
+    <style>
+        body {
+            font-family: fedra sans, sans-serif;
+            padding: 30px;
+            background-color: #ffffff;
+            color: black;
+            line-height: 1.8;
+        }
+
+        h1 {
+            text-align: center;
+            color: #D81B60;
+            text-shadow: #858383 1px 1px 3px;
+            margin: 0 auto 20px auto;
+            /* Center horizontally using auto margins */
+            border-radius: 4px;
+            box-shadow: #898989 2px 2px 5px;
+            padding: 5px 10px;
+            background-color: #ffffff;
+            display: inline-block;
+            /* Makes the box wrap around the text */
+            position: relative;
+            left: 50%;
+            /* Position the h1 50% from the left */
+            transform: translateX(-50%);
+            /* Center it by shifting half its width */
+        }
+
+
+        .audio-text-pair {
+            display: block;
+            margin-bottom: 20px;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        #specific-audio-text-pair {
+            margin-left: 50px;
+        }
+
+        .audio-text-pair button {
+            font-family: fedra sans, sans-serif;
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #000000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .audio-text-pair button:hover {
+            background-color: #ffffff;
+            color: #000000;
+            box-shadow: #000000 2px 2px 5px;
+        }
+
+        .text-container {
+            font-size: 20px;
+            display: inline;
+        }
+
+        span {
+            display: inline;
+            /* Inline ensures proper spacing without gaps */
+            margin-right: 0;
+            /* Ensures no unnecessary spacing */
+            padding: 3px;
+            /* No padding to prevent extra spacing */
+            border-radius: 2px;
+            transition: all 0.1s ease;
+            font-weight: inherit;
+            /* Neutralizes browser defaults */
+            background: none;
+            /* Neutralizes browser defaults */
+        }
+
+        span.highlight {
+            background-color: #ffffff;
+            box-shadow: #909090 1px 1px 0px;
+            color: #D81B60;
+            font-weight: bold;
+            transition: all 0.1s ease-in-out;
+            border-radius: 4px;
+            border: #D81B60 1px solid;
+        }
+
+        span.default {
+            background-color: transparent;
+            color: inherit;
+            /* Ensures compatibility with parent styles */
+            font-weight: normal;
+        }
+
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        #fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 15px;
+            font-size: 16px;
+            background: #D81B60;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #fullscreen-btn:hover {
+            background-color: #fff;
+            color: #D81B60;
+            box-shadow: 2px 2px 5px #000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>LA DIVISIÓ DE LA TERRA</h1>
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_e0e96618b06f4482984540a7b3c24658.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="0.8">La Terra</span>
+            <span data-start="0.9" data-end="2.2">té forma geoide:</span>
+            <span data-start="2.4" data-end="3.4" class="default">és una esfera</span>
+            <span data-start="3.4" data-end="4.8">aplatada pels pols.</span>
+        </div>
+    </div>
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_f77a0005ba7847ce82044d333547abe4.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="0.8" class="default">L'equador</span>
+            <span data-start="1.0" data-end="1.7">és una línia</span>
+            <span data-start="1.7" data-end="2.4">imaginària</span>
+            <span data-start="2.4" data-end="3.1">que divideix</span>
+            <span data-start="3.1" data-end="3.8">la Terra</span>
+            <span data-start="3.8" data-end="4.6">en 2 parts</span>
+            <span data-start="4.6" data-end="6.0">horitzontals.</span>
+        </div>
+    </div>
+
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_adccf8630fd943da86fe57028db4cb49.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="0.7">Cada part</span>
+            <span data-start="0.8" data-end="1.4">s'anomena</span>
+            <span data-start="1.4" data-end="2.2">hemisferi.</span>
+        </div>
+    </div>
+
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_0be27cd8796543f3aeb96d456dd6aa3a.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="0.65">El diàmetre</span>
+            <span data-start="0.65" data-end="1.6">de la Terra</span>
+            <span data-start="1.6" data-end="2.4">és més gran</span>
+            <span data-start="2.4" data-end="3.2">a l'equador.</span>
+        </div>
+    </div>
+
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_1caee8c030334b9ab92e74a03e6b1025.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="0.65">El diàmetre</span>
+            <span data-start="0.65" data-end="1.6">de la Terra</span>
+            <span data-start="1.6" data-end="2.4">és més petit</span>
+            <span data-start="2.4" data-end="3.2">als pols.</span>
+        </div>
+    </div>
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_11b24c240ebd462895cb33c76eb1e952.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="1.2">L'hemisferi nord</span>
+            <span data-start="1.2" data-end="2.0">és on hi ha</span>
+            <span data-start="2.0" data-end="2.6">la majoria</span>
+            <span data-start="2.6" data-end="3.5">de continents:</span>
+            <span data-start="3.5" data-end="5.0">Àsia, Europa,</span>
+            <span data-start="5.0" data-end="5.8">una gran part</span>
+            <span data-start="5.8" data-end="6.5">de l'África</span>
+            <span data-start="6.5" data-end="7.1">i quasi</span>
+            <span data-start="7.1" data-end="8.4">la meitat d'Amèrica.</span>
+            <span data-start="9.0" data-end="10.0">També s'anomena</span>
+            <span data-start="10.0" data-end="12.0">hemisferi continental.</span>
+        </div>
+    </div>
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_3cf2c098ffa2469da23cc24cfd810bd9.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="1.2">L'hemisferi sud</span>
+            <span data-start="1.2" data-end="2.2">és on hi ha</span>
+            <span data-start="2.2" data-end="2.8">la majoria</span>
+            <span data-start="2.8" data-end="3.8">dels oceans.</span>
+            <span data-start="4.8" data-end="6.1">També s'anomena</span>
+            <span data-start="6.1" data-end="7.6">hemisferi marítim.</span>
+        </div>
+    </div>
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_189ec03f7ea84cddbfd5e07dd5265df9.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="1.2">A l'hemisferi sud</span>
+            <span data-start="1.2" data-end="2.3">hi ha el continent</span>
+            <span data-start="2.3" data-end="3.4">de l'Antàrtida</span>
+            <span data-start="3.4" data-end="4.5">i una gran part</span>
+            <span data-start="4.5" data-end="5.6">d'Oceania.</span>
+        </div>
+    </div>
+
+
+
+    <div class="audio-text-pair" id="specific-audio-text-pair">
+        <button>Play</button>
+        <audio src="https://static.wixstatic.com/mp3/0c2583_f2ff4433fb7849a9a971588e27e1ef70.m4a"></audio>
+        <div class="text-container">
+            <span data-start="0.0" data-end="1.0">El pol nord</span>
+            <span data-start="1.0" data-end="2.2">és l'extrem nord</span>
+            <span data-start="2.2" data-end="2.9">de la Terra</span>
+            <span data-start="2.9" data-end="3.8">i el pol sud</span>
+            <span data-start="3.8" data-end="5.4">és l'extrem sud.</span>
+        </div>
+    </div>
+
+
+
+    <button id="fullscreen-btn">Pantalla completa</button>
+
+
+
+    <!-- Additional pairs remain unchanged -->
+
+    <script>
+
+        const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+        fullscreenBtn.addEventListener("click", () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch((err) => {
+                    alert(`Error attempting to enable fullscreen mode: ${err.message}`);
+                });
+                fullscreenBtn.textContent = "Minimitza ";
+            } else {
+                document.exitFullscreen().catch((err) => {
+                    alert(`Error attempting to exit fullscreen mode: ${err.message}`);
+                });
+                fullscreenBtn.textContent = "Pantalla completa";
+            }
+        });
+
+        // Optional: update button text on fullscreen change (in case user uses Esc key)
+        document.addEventListener("fullscreenchange", () => {
+            if (!document.fullscreenElement) {
+                fullscreenBtn.textContent = "Pantalla completa";
+            }
+        });
+
+
+
+        // Reusable function to set up audio-text synchronization
+        function setupAudioTextPair(pair) {
+            const playButton = pair.querySelector("button");
+            const audio = pair.querySelector("audio");
+            const textContainer = pair.querySelector(".text-container");
+
+            playButton.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.textContent = "Pause";
+                } else {
+                    audio.pause();
+                    playButton.textContent = "Play";
+                }
+            });
+
+            audio.addEventListener("timeupdate", () => {
+                const currentTime = audio.currentTime;
+                console.log(`Current Audio Time: ${currentTime}`); // Logs the current audio time
+
+                textContainer.querySelectorAll("span").forEach((span) => {
+                    const start = parseFloat(span.dataset.start);
+                    const end = parseFloat(span.dataset.end);
+
+                    console.log(`Span Start: ${start}, Span End: ${end}`); // Logs the timing for each span
+
+                    if (currentTime >= start && currentTime <= end) {
+                        console.log(`Highlighting span: "${span.textContent}"`); // Logs when a span is being highlighted
+                        span.classList.add("highlight");
+                        span.classList.remove("default");
+                    } else {
+                        span.classList.remove("highlight");
+                        span.classList.add("default");
+                    }
+                });
+            });
+
+            audio.addEventListener("ended", () => {
+                playButton.textContent = "Play";
+                textContainer.querySelectorAll("span").forEach((span) => {
+                    span.classList.remove("highlight");
+                    span.classList.add("default");
+                });
+            });
+
+            audio.addEventListener("error", () => {
+                alert("Error: Unable to load or play the audio file.");
+            });
+        }
+
+        // Initialize all audio-text pairs
+        document.querySelectorAll(".audio-text-pair").forEach(setupAudioTextPair);
+
+
+        document.querySelectorAll("span").forEach((span) => {
+            const boldAndColoredWords = ["geoide", "hemisferi.", "L'hemisferi nord", "hemisferi continental", "L'hemisferi sud", "hemisferi marítim", "El pol nord", "el pol sud", "L'equador",];
+            const coloredOnlyWords = ["esfera", "aplatada", "línia", "imaginària", "horitzontals.", "diàmetre", "Àsia, Europa", "África", "Amèrica", "Antàrtida", "Oceania"];
+            const text = span.textContent;
+
+            // Check for boldAndColoredWords and apply styles
+            boldAndColoredWords.forEach((word) => {
+                if (text.includes(word)) {
+                    span.innerHTML = text.replace(
+                        word,
+                        `<span style="font-weight: bold; color: #D81B60;">${word}</span>`
+                    );
+                }
+            });
+
+            // Check for coloredOnlyWords and apply styles
+            coloredOnlyWords.forEach((word) => {
+                if (text.includes(word)) {
+                    span.innerHTML = text.replace(
+                        word,
+                        `<span style="color: #D81B60;">${word}</span>`
+                    );
+                }
+            });
+        });
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
